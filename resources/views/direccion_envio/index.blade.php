@@ -8,17 +8,18 @@
 <div class="container mt-5">
     <h1 class="text-center mb-4" style="font-weight: bold; color: #333;">Direcciones de Envío</h1>
 
+    <!-- Botón para añadir dirección, siempre visible -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a href="{{ route('direccion_envio.create') }}" class="btn btn-warning btn-lg" style="padding: 10px 20px; font-size: 1.2em;">
+                <i class="fas fa-plus"></i> Añadir Otra Dirección
+            </a>
+        </div>
+    </div>
+
     @if ($direcciones->isEmpty())
         <p class="text-center text-muted" style="font-size: 1.2em;">No hay direcciones registradas.</p>
     @else
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <a href="{{ route('direccion_envio.create') }}" class="btn btn-warning btn-lg" style="padding: 10px 20px; font-size: 1.2em;">
-                    <i class="fas fa-plus"></i> Añadir Otra Dirección
-                </a>
-            </div>
-        </div>
-
         <table class="table table-striped table-bordered shadow-sm" style="background-color: #fff;">
             <thead style="background-color: #343a40; color: #fff;">
                 <tr>
@@ -45,11 +46,11 @@
                         <td style="text-align: center;">{{ $direccion->numero_interior }}</td>
                         <td style="text-align: center;">{{ $direccion->numero_exterior }}</td>
                         <td style="text-align: center;">
-    {{ $direccion->codigo_postal?->descripcion_codigo ?? '51200' }}
-</td>
+                            {{ $direccion->codigopostal->descripcion_codigo ?? '51200' }}
+                        </td>
                         <td style="text-align: center;">{{ $direccion->delegacion->nombre_delegacion ?? 'Temascaltepec' }}</td>
-                        <td style="text-align: center;">{{ $direccion->ciudad->nombre_ciudad ?? 'Ciudad de Mexico'}}</td>
-                        <td style="text-align: center;">{{ $direccion->estado->nombre_estado ?? 'Estado de Mexico' }}</td>
+                        <td style="text-align: center;">{{ $direccion->ciudad->nombre_ciudad ?? 'Ciudad de México' }}</td>
+                        <td style="text-align: center;">{{ $direccion->estado->nombre_estado ?? 'Estado de México' }}</td>
                         <td style="text-align: center;">{{ $direccion->colonia }}</td>
                         <td style="text-align: center;">{{ $direccion->referencias }}</td>
                         <td style="text-align: center;">
@@ -86,8 +87,8 @@
 @section('styles')
     <style>
         body {
-            background-color: #f8f9fa; /* Color de fondo claro */
-            color: #333; /* Color de texto oscuro */
+            background-color: #f8f9fa;
+            color: #333;
         }
         .card {
             margin-top: 20px;
@@ -95,24 +96,24 @@
             padding: 20px;
         }
         .table {
-            background-color: #ffffff !important; /* Fondo blanco para la tabla */
+            background-color: #ffffff !important;
         }
         .table th, .table td {
-            border-color: #dddddd; /* Color de borde suave */
+            border-color: #dddddd;
         }
         .btn-warning {
-            background-color: #ffc107; /* Color amarillo para el botón de advertencia */
+            background-color: #ffc107;
             border-color: #ffc107;
-            color: #212529; /* Color de texto oscuro */
+            color: #212529;
         }
         .btn-primary {
-            background-color: #007bff; /* Color azul más oscuro para el botón primario */
+            background-color: #007bff;
             border-color: #007bff;
         }
         .btn-danger {
-            background-color: #dc3545; /* Color rojo para el botón de eliminar */
+            background-color: #dc3545;
             border-color: #dc3545;
-            color: #fff; /* Color de texto blanco */
+            color: #fff;
         }
     </style>
 @endsection

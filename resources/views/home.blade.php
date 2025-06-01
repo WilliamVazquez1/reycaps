@@ -8,117 +8,196 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-       /* Estilos para el sidebar */
 body {
     display: flex;
-    background-color: #1b1b1b; /* Fondo general en un tono negro */
+    background: #f5f5f7;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1d1d1f;
+    margin: 0;
+    padding: 0;
 }
 
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color: #121212; /* Fondo negro oscuro para el sidebar */
-    color: #ffffff; /* Texto blanco para mayor contraste */
+    background-color: #000000;
+    color: #ffffff;
     position: fixed;
-    border-right: 1px solid #333333; /* Borde gris oscuro */
+    border-right: 1px solid #1c1c1e;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.2);
+    padding-top: 20px;
+}
+
+.sidebar .brand-link img {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.sidebar .brand-link h5 {
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-top: 10px;
 }
 
 .sidebar .nav-link {
-    color: #ffffff; /* Texto blanco en los enlaces del sidebar */
+    color: #e5e5e7 !important;
+    padding: 12px 20px;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 8px;
+    margin: 4px 10px;
+}
+
+.sidebar .nav-link i {
+    margin-right: 8px;
+    color: #e5e5e7 !important;
 }
 
 .sidebar .nav-link.active {
-    background-color: #333333; /* Fondo gris oscuro para el enlace activo */
-    color: #ffd700; /* Amarillo suave para el texto del enlace activo */
+    background-color: #007aff;
+    color: #ffffff !important;
+    box-shadow: 0 2px 6px rgba(0,122,255,0.3);
 }
 
-.sidebar .brand-link {
-    font-weight: bold;
-    color: #ffd700; /* Amarillo suave para el texto del brand */
+.sidebar .nav-link:hover {
+    background-color: #1c1c1e;
+    color: #007aff !important;
 }
 
 .content-wrapper {
     margin-left: 250px;
-    padding: 20px;
+    padding: 20px 30px;
     width: calc(100% - 250px);
-    height: 100vh;
-    overflow-y: auto;
-    background-color: #1b1b1b; /* Fondo negro para el contenido */
+    background-color: #f9f9f9;
+    min-height: 100vh;
 }
 
 .navbar {
-    background-color: #121212; /* Fondo negro oscuro para la barra de navegación */
-    color: #ffffff; /* Texto blanco */
-    border-bottom: 1px solid #333333; /* Borde gris oscuro */
+    background-color: #000000;
+    border-bottom: 1px solid #1c1c1e;
+    padding: 15px 30px;
+    font-size: 1rem;
 }
 
-.navbar .navbar-brand {
-    color: #ffd700; /* Amarillo suave */
-    display: none; /* Ocultar el logo de Laravel */
+.navbar .nav-link {
+    color: #f2f2f7 !important;
+    font-weight: 500;
+    margin-right: 15px;
+    transition: color 0.2s ease-in-out;
 }
 
-.navbar .navbar-nav .nav-link {
-    color: #ffffff; /* Texto blanco */
+.navbar .nav-link:hover {
+    color: #007aff !important;
 }
 
-.navbar .navbar-nav .nav-link:hover {
-    color: #ffd700; /* Amarillo suave para el hover en el navbar */
+.navbar .dropdown-menu {
+    background-color: #1c1c1e;
+    border: none;
 }
 
-.content {
-    margin-top: 20px;
+.navbar .dropdown-item {
+    color: #f2f2f7;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #2c2c2e;
+    color: #007aff;
+}
+
+.card {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.card-img-top {
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .card-body {
-    background-color: #292929; /* Fondo gris oscuro para la tarjeta */
-    color: #ffffff; /* Texto blanco para buen contraste */
+    background: #fff;
+    color: #1d1d1f;
+    padding: 20px;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.card-text {
+    font-size: 0.95em;
+    color: #444;
+}
+
+.btn-primary {
+    background-color: #007aff;
+    border: none;
+    padding: 10px 16px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra más oscura */
+    transition: background-color 0.2s ease-in-out;
 }
 
-        .carousel-container {
-            width: 100%; /* El carrusel ocupa el ancho completo del contenedor */
-            max-width: 300px; /* O establece un máximo si quieres limitar el tamaño */
-    margin: 0 auto; 
-    border: 2px solid #000; /* Cambia el color y grosor del borde según prefieras */
-    border-radius: 10px; /* Opcional: hace que el borde tenga esquinas redondeadas */
-    padding: 5px; 
-        }
-        .carousel-inner img {
-            height: 300px;
-            object-fit: cover;
-            width: 100%;
-        }
-        .sidebar .brand-link h5 {
-    font-size: 1.5em; /* Aumenta el tamaño de la fuente */
-    font-weight: bold; /* Hace el texto más grueso */
-    color: #f5a623; /* Cambia el color a un tono moderno, como dorado */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Añade una sombra para resaltar */
-    letter-spacing: 2px; /* Espaciado entre letras */
-    font-family: 'Arial', sans-serif; /* Cambia la fuente a algo más impactante */
-}
-.sidebar .brand-link h5 {
-    color: white;
-}
-.brand-text {
-    font-family: 'Arial', sans-serif; /* Cambia 'Arial' por otra fuente sans-serif si deseas */
-    font-weight: 400; /* Peso de fuente para un estilo minimalista */
-    color: #ffffff; /* Blanco para el texto */
-    letter-spacing: 1px; /* Espaciado entre letras para darle elegancia */
-    margin: 0;
-    font-size: 1.2em; /* Tamaño ajustable */
-}
-.sidebar .nav-link {
-    color: #ffffff !important; /* Forzar color blanco para el texto */
+.btn-primary:hover {
+    background-color: #005bb5;
 }
 
-.sidebar .nav-link i {
-    color: #ffffff !important; /* Forzar color blanco para el icono */
+.carousel-container {
+    width: 100%;
+    max-width: 20%; /* Ajusta el porcentaje según sea necesario */
+    margin: 40px auto;
+    padding: 10px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
+.carousel-inner img {
+    width: 100%;
+    max-height: 100x;
+    object-fit: cover;
+    border-radius: 24px;
+}
 
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #000;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.carousel-indicators li {
+    background-color: #ccc;
+}
+
+.carousel-indicators .active {
+    background-color: #007aff;
+}
+
+.lead {
+    font-size: 1.1em;
+    color: #333;
+}
+
+.text-success {
+    color: #007a1e !important;
+}
+
+.text-warning {
+    color: #c77f00 !important;
+}
     </style>
 </head>
+
 <body>
     
     <!-- Sidebar -->
@@ -162,9 +241,8 @@ body {
             <a href="{{ route('direccion_envio.index') }}" class="nav-link {{ request()->routeIs('direccion_envio.index') ? 'active' : '' }}">
                 <i class="fas fa-shipping-fast"></i> Dirección Envío
             </a>
-            <a href="{{ route('clientes.index') }}" class="nav-link {{ request()->routeIs('clientes.index') ? 'active' : '' }}">
-                <i class="fas fa-user"></i> Clientes
-            </a>
+            
+            
             <a href="{{ route('ventas.index') }}" class="nav-link {{ request()->routeIs('ventas.index') ? 'active' : '' }}">
                 <i class="fas fa-shopping-cart"></i> Ventas
             </a>
@@ -200,9 +278,7 @@ body {
             <a href="{{ route('categorias.index') }}" class="nav-link {{ request()->routeIs('categorias.index') ? 'active' : '' }}">
                 <i class="fas fa-th-list"></i> Categorías
             </a>
-            <a href="{{ route('clientes.index') }}" class="nav-link {{ request()->routeIs('clientes.index') ? 'active' : '' }}">
-                <i class="fas fa-user"></i> Clientes
-            </a>
+           
             <a href="{{ route('proveedores.index') }}" class="nav-link {{ request()->routeIs('proveedores.index') ? 'active' : '' }}">
                 <i class="fas fa-handshake"></i> Proveedores
             </a>
@@ -308,7 +384,7 @@ body {
     </a>
 </div>
 <div class="container">
-<h1 style="color: white; margin-top: 20px;">Productos</h1>
+<h1 style="color: #1d1d1f; font-weight: 600; font-size: 2rem; margin-top: 30px;">🧢 Productos</h1>
 
     <div class="row">
         @foreach($productos->unique('id') as $producto) <!-- Filtrar productos únicos por id -->

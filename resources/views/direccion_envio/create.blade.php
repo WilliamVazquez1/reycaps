@@ -19,75 +19,55 @@
                             <!-- Calle -->
                             <div class="form-group">
                                 <label for="calle">Calle:</label>
-                                <input type="text" name="calle" class="form-control" required>
+                                <input type="text" name="calle" class="form-control" required value="{{ old('calle') }}">
                             </div>
 
                             <!-- Número Interior -->
                             <div class="form-group">
                                 <label for="numero_interior">Número Interior:</label>
-                                <input type="number" name="numero_interior" class="form-control" required>
+                                <input type="number" name="numero_interior" class="form-control" required value="{{ old('numero_interior') }}">
                             </div>
 
                             <!-- Número Exterior -->
                             <div class="form-group">
                                 <label for="numero_exterior">Número Exterior:</label>
-                                <input type="number" name="numero_exterior" class="form-control" required>
+                                <input type="number" name="numero_exterior" class="form-control" required value="{{ old('numero_exterior') }}">
                             </div>
 
                             <!-- Código Postal -->
                             <div class="form-group">
                                 <label for="id_codigo">Código Postal:</label>
-                                <select name="id_codigo" class="form-control" required>
-                                    <option value="">Seleccione un código postal</option>
-                                    @foreach($codigos as $codigo)
-                                        <option value="{{ $codigo->id }}">{{ $codigo->descripcion_codigo }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="id_codigo" class="form-control" required value="{{ old('id_codigo') }}" placeholder="Ejemplo: 51200">
                             </div>
 
                             <!-- Delegación -->
                             <div class="form-group">
                                 <label for="id_delegacion">Delegación:</label>
-                                <select name="id_delegacion" class="form-control" required>
-                                    <option value="">Seleccione una delegación</option>
-                                    @foreach($delegaciones as $delegacion)
-                                        <option value="{{ $delegacion->id }}">{{ $delegacion->nombre_delegacion}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="id_delegacion" class="form-control" required value="{{ old('id_delegacion') }}" placeholder="Ejemplo: Temascaltepec">
                             </div>
 
                             <!-- Ciudad -->
                             <div class="form-group">
                                 <label for="id_ciudad">Ciudad:</label>
-                                <select name="id_ciudad" class="form-control" required>
-                                    <option value="">Seleccione una ciudad</option>
-                                    @foreach($ciudades as $ciudad)
-                                        <option value="{{ $ciudad->id }}">{{ $ciudad->nombre_ciudad }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="id_ciudad" class="form-control" required value="{{ old('id_ciudad') }}" placeholder="Ejemplo: Ciudad de México">
                             </div>
 
                             <!-- Estado -->
                             <div class="form-group">
                                 <label for="id_estado">Estado:</label>
-                                <select name="id_estado" class="form-control" required>
-                                    <option value="">Seleccione un estado</option>
-                                    @foreach($estados as $estado)
-                                        <option value="{{ $estado->id }}">{{ $estado->nombre_estado}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="id_estado" class="form-control" required value="{{ old('id_estado') }}" placeholder="Ejemplo: Estado de México">
                             </div>
 
                             <!-- Colonia -->
                             <div class="form-group">
                                 <label for="colonia">Colonia:</label>
-                                <input type="text" name="colonia" class="form-control" required>
+                                <input type="text" name="colonia" class="form-control" required value="{{ old('colonia') }}">
                             </div>
 
                             <!-- Referencias -->
                             <div class="form-group">
                                 <label for="referencias">Referencias:</label>
-                                <textarea name="referencias" class="form-control" rows="3"></textarea>
+                                <textarea name="referencias" class="form-control" rows="3" value="{{ old('referencias') }}"></textarea>
                             </div>
 
                             <!-- Botón Guardar -->

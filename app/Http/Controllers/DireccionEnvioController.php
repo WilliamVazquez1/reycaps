@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CodigoPostal;
-use App\Models\Delegacion;
-use App\Models\Ciudad;
-use App\Models\Estado;
 use App\Models\DireccionEnvio;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -22,8 +18,8 @@ class DireccionEnvioController extends Controller
             session()->forget('tramitar'); // Eliminar la sesión si no se accede desde tramitar
         }
 
-        // Obtener los datos paginados de 'DireccionEnvio' junto con las relaciones necesarias
-        $direcciones = DireccionEnvio::with(['codigopostal', 'delegacion', 'ciudad', 'estado'])->paginate();
+        // Obtener los datos paginados de 'DireccionEnvio' (sin relaciones, ya que ahora son texto)
+        $direcciones = DireccionEnvio::paginate();
 
         return view('direccion_envio.index', compact('direcciones'))
             ->with('i', ($request->input('page', 1) - 1) * $direcciones->perPage());
@@ -32,25 +28,21 @@ class DireccionEnvioController extends Controller
     public function create(): View
     {
         $direccion = new DireccionEnvio();
-        $codigos = CodigoPostal::all();
-        $delegaciones = Delegacion::all();
-        $ciudades = Ciudad::all();
-        $estados = Estado::all();
-
-        return view('direccion_envio.create', compact('direccion', 'codigos', 'delegaciones', 'ciudades', 'estados'));
+        // No necesitamos cargar datos de las tablas relacionadas, ya que ahora usamos campos de texto
+        return view('direccion_envio.create', compact('direccion'));
     }
 
     public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
-            'calle' => 'nullable|string|max:200',
-            'numero_interior' => 'nullable|integer',
-            'numero_exterior' => 'nullable|integer',
-            'id_codigo' => 'nullable|integer',
-            'id_delegacion' => 'nullable|integer',
-            'id_ciudad' => 'nullable|integer',
-            'id_estado' => 'nullable|integer',
-            'colonia' => 'nullable|string|max:200',
+            'calle' => 'required|string|max:200',
+            'numero_interior' => 'required|integer',
+            'numero_exterior' => 'required|integer',
+            'id_codigo' => 'required|string|max:10',
+            'id_delegacion' => 'required|string|max:100',
+            'id_ciudad' => 'required|string|max:100',
+            'id_estado' => 'required|string|max:100',
+            'colonia' => 'required|string|max:200',
             'referencias' => 'nullable|string|max:300',
         ]);
 
@@ -74,14 +66,14 @@ class DireccionEnvioController extends Controller
     public function update(Request $request, DireccionEnvio $direccion): RedirectResponse
     {
         $validatedData = $request->validate([
-            'calle' => 'nullable|string|max:200',
-            'numero_interior' => 'nullable|integer',
-            'numero_exterior' => 'nullable|integer',
-            'id_codigo' => 'nullable|integer',
-            'id_delegacion' => 'nullable|integer',
-            'id_ciudad' => 'nullable|integer',
-            'id_estado' => 'nullable|integer',
-            'colonia' => 'nullable|string|max:200',
+            'calle' => 'required|string|max:200',
+            'numero_interior' => 'required|integer',
+            'numero_exterior' => 'required|integer',
+            'id_codigo' => 'required|string|max:10',
+            'id_delegacion' => 'required|string|max:100',
+            'id_ciudad' => 'required|string|max:100',
+            'id_estado' => 'required|string|max:100',
+            'colonia' => 'required|string|max:200',
             'referencias' => 'nullable|string|max:300',
         ]);
 
@@ -97,6 +89,7 @@ class DireccionEnvioController extends Controller
 
         return redirect()->route('direccion_envio.index')->with('success', 'Dirección de envío eliminada exitosamente.');
     }
+
     public function confirmarPago()
     {
         // Obtener el carrito de la sesión
@@ -105,5 +98,4 @@ class DireccionEnvioController extends Controller
         // Retornar la vista 'confirmar' con el carrito
         return view('pago.confirmar', compact('cart'));
     }
-    
 }
